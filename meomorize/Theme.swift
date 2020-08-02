@@ -25,7 +25,8 @@ struct Themes <Element>{
     struct Theme  {
         var name:String
         var emojies:[Element]
-        var color:Color
+        var primaryColor:Color
+        var secondaryColor:Color
         
     }
 

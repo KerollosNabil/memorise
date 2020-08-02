@@ -30,13 +30,33 @@ struct ContentView: View{
     var body: some View {
         
         VStack{
-            
+            //Text("koko")
+            Text("Score:\(emojiCardGame.score)").fontWeight(.semibold)
+                .font(Font.italic(.title)())
+                .padding()
             Grid(emojiCardGame.cards){card in
                 CardView(card: card).onTapGesture {
                     self.emojiCardGame.choos(card: card)
                 }
             }
-            .foregroundColor(emojiCardGame.theme.color)
+            .foregroundColor(emojiCardGame.theme.primaryColor)
+            HStack{
+                
+                Button(action: {
+                    print("koko")
+                    self.emojiCardGame.newGame()
+                    
+                }) {
+                    Text("New Game").fontWeight(.semibold)
+                    .font(.title)
+                        .padding()
+                    .foregroundColor(.white)
+                        .background(emojiCardGame.theme.primaryColor)
+                    .cornerRadius(40)
+
+                }
+                
+            }
             
         }
         
@@ -65,6 +85,9 @@ struct CardView: View{
             }else if(card.isMatched==false){
                 RoundedRectangle(cornerRadius: cornerRedus).fill()
             }
+//            if card.isMatched{
+//                
+//            }
         }.font(Font.system(size: min(size.width, size.height) * fontRatio))
             .padding(min(size.width, size.height) * paddingRatio)
     }

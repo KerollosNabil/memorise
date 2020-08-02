@@ -12,6 +12,7 @@ import Foundation
 struct CardGame <CardContentType> {
     var cards:Array<Card>
     var theme:Themes<CardContentType>.Theme
+    var score = 0
     
     var indexOfTheOneAndOnlyFaceUpCard:Int?{
         get{
@@ -44,13 +45,20 @@ struct CardGame <CardContentType> {
                 if cards[cardIndex].contentId == cards[theOnlyCard].contentId {
                     cards[theOnlyCard].isMatched = true
                     cards[cardIndex].isMatched = true
+                    score+=2
+                }else if card.isVisited{
+                    score -= 1
                 }
                 cards[cardIndex].isFaceUp = true
                 
             }else{
+                if card.isVisited{
+                    score -= 1
+                }
                 indexOfTheOneAndOnlyFaceUpCard = cardIndex
             }
-            
+            cards[cardIndex].isVisited = true
+            print(score)
         }
         
     }
@@ -70,6 +78,7 @@ struct CardGame <CardContentType> {
         var isMatched = false
         var content:CardContentType
         var contentId:Int
+        var isVisited = false
         let id:Int
     }
 }
