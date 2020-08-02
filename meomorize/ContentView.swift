@@ -76,17 +76,22 @@ struct CardView: View{
     private func body(size:CGSize)-> some View{
         print(size)
         return ZStack{
-            
-            if card.isFaceUp
-            {
-                RoundedRectangle(cornerRadius: cornerRedus).fill(Color.white)
+            if card.isMatched == false{
+                if card.isFaceUp
+                {
+                    RoundedRectangle(cornerRadius: cornerRedus).fill(Color.white)
+                    RoundedRectangle(cornerRadius: cornerRedus).stroke(lineWidth: lineWidth)
+                    Text(card.content)
+                }else {
+                    RoundedRectangle(cornerRadius: cornerRedus).fill()
+                }
+            }else{
+                RoundedRectangle(cornerRadius: cornerRedus).fill(Color.gray)
                 RoundedRectangle(cornerRadius: cornerRedus).stroke(lineWidth: lineWidth)
                 Text(card.content)
-            }else if(card.isMatched==false){
-                RoundedRectangle(cornerRadius: cornerRedus).fill()
             }
 //            if card.isMatched{
-//                
+//
 //            }
         }.font(Font.system(size: min(size.width, size.height) * fontRatio))
             .padding(min(size.width, size.height) * paddingRatio)
