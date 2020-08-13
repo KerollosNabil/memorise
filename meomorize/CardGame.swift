@@ -10,18 +10,23 @@ import Foundation
 
 
 struct CardGame <CardContentType> {
-    var cards:Array<Card>
-    var theme:Themes<CardContentType>.Theme
-    var score = 0
+    private(set) var cards:Array<Card>
+    private(set) var theme:Themes<CardContentType>.Theme
+    private(set) var score = 0
     
-    var indexOfTheOneAndOnlyFaceUpCard:Int?{
+    private var indexOfTheOneAndOnlyFaceUpCard:Int?{
         get{
             cards.indices.filter{cards[$0].isFaceUp}.only
         }
         set{
-            for index in cards.indices{
-                cards[index].isFaceUp = index == newValue
-            }
+            cards.indices.forEach({index in cards[index].isFaceUp = index == newValue})
+//            for index in cards.indices{
+//
+//                if cards[index].isMatched == false {
+//                    cards[index].isFaceUp = index == newValue
+//                }
+//
+//            }
         }
     }
     
@@ -38,7 +43,6 @@ struct CardGame <CardContentType> {
     }
     
     mutating func choose(card:Card)  {
-        print(card)
         if let cardIndex = cards.firstIndex(matching: card), !cards[cardIndex].isMatched, !cards[cardIndex].isFaceUp{
             
             if let theOnlyCard = indexOfTheOneAndOnlyFaceUpCard{
@@ -58,18 +62,11 @@ struct CardGame <CardContentType> {
                 indexOfTheOneAndOnlyFaceUpCard = cardIndex
             }
             cards[cardIndex].isVisited = true
-            print(score)
         }
         
+        
     }
-    private func index(of card:Card) -> Int{
-        for cardIndex in 0..<self.cards.count {
-            if cards[cardIndex].id == card.id{
-                return cardIndex
-            }
-        }
-        return -1
-    }
+    
     
     struct Card:Identifiable  {
         

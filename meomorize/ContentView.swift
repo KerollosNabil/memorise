@@ -43,7 +43,6 @@ struct ContentView: View{
             HStack{
                 
                 Button(action: {
-                    print("koko")
                     self.emojiCardGame.newGame()
                     
                 }) {
@@ -73,33 +72,32 @@ struct CardView: View{
             self.body(size: geometry.size)
         }
     }
+    @ViewBuilder
     private func body(size:CGSize)-> some View{
-        print(size)
-        return ZStack{
-            if card.isMatched == false{
-                if card.isFaceUp
-                {
-                    RoundedRectangle(cornerRadius: cornerRedus).fill(Color.white)
-                    RoundedRectangle(cornerRadius: cornerRedus).stroke(lineWidth: lineWidth)
-                    Text(card.content)
-                }else {
-                    RoundedRectangle(cornerRadius: cornerRedus).fill()
-                }
-            }else{
-                RoundedRectangle(cornerRadius: cornerRedus).fill(Color.gray)
-                RoundedRectangle(cornerRadius: cornerRedus).stroke(lineWidth: lineWidth)
+        if card.isFaceUp || !card.isMatched{
+            ZStack{
+                Pie(startAngle: Angle(degrees: -90), endAnlge: Angle(degrees: -340),clockWise: true)
+                .padding(min(size.width, size.height) * paddingRatioForThePie)
+                .opacity(0.4)
                 Text(card.content)
+                    .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
+                    .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false))
             }
-//            if card.isMatched{
-//
-//            }
-        }.font(Font.system(size: min(size.width, size.height) * fontRatio))
+            .cardify(isFaceUp: card.isFaceUp)
+            .font(Font.system(size: min(size.width, size.height) * fontRatio))
             .padding(min(size.width, size.height) * paddingRatio)
+        }
+        
+        
+        
+        
+
     }
-    let cornerRedus:CGFloat = 10.0
-    let lineWidth:CGFloat = 3.0
-    let fontRatio:CGFloat = 0.75
-    let paddingRatio:CGFloat = 0.02
+    private let cornerRedus:CGFloat = 10.0
+    private let fontRatio:CGFloat = 0.75
+    private let paddingRatio:CGFloat = 0.02
+    private let paddingRatioForThePie:CGFloat = 0.03
+    
 }
 
 
@@ -110,13 +108,18 @@ struct CardView: View{
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
+    static let contView = ContentView()
+    
+    
     static var previews: some View {
-       Group {
+    
+        contView.emojiCardGame.choos(card: contView.emojiCardGame.cards[0])
+       return Group {
+             
+            contView.background(Color(UIColor.systemBackground)).colorScheme(.light)
         
-            ContentView().background(Color(UIColor.systemBackground)).colorScheme(.light)
         
-        
-            ContentView().background(Color(UIColor.systemBackground)).colorScheme(.dark)
+            contView.background(Color(UIColor.systemBackground)).colorScheme(.dark)
             
         }
     }

@@ -14,7 +14,7 @@ class EmohiThemes{
     ,Themes<String>.Theme(name: "ftuits", emojies: ["🍏","🍎","🍐","🍊","🍋","🍌","🍉","🍇","🍓","🍈","🍒","🍑","🥭","🍍","🥝","🍅","🍆","🥑","🥦","🥬","🥒","🌶","🌽","🥕","🧄","🧅","🥔","🍠"] , primaryColor: .yellow, secondaryColor: .secondary)
     ,Themes<String>.Theme(name: "viacles", emojies: ["🚗","🚙","🚕","🚌","🚎","🏎","🚓","🚑","🚒","🚐","🚚","🚛","🚜","🛴","🚲","🛵","🏍","🛺","🚔","🚍","🚘","🚖","🚡","🚠","🚟","🚝","🚄","🚅","✈️","🛬","💺"] , primaryColor: .orange, secondaryColor: .secondary)
     ,Themes<String>.Theme(name: "flags", emojies: ["🏳️","🏴","🏁","🚩","🏳️‍🌈","🏴‍☠️","🇦🇫","🇦🇽","🇦🇱","🇩🇿","🇦🇸","🇦🇩","🇦🇴","🇦🇮","🇦🇶","🇦🇬","🇦🇷","🇦🇲","🇦🇼","🇦🇺","🇦🇹","🇦🇿","🇧🇸","🇧🇭","🇧🇩","🇧🇧","🇧🇾","🇧🇪","🇧🇿","🇧🇯","🇧🇲","🇧🇹","🇧🇴"] , primaryColor: .pink, secondaryColor: .secondary)]
-    lazy var emojiThemes = Themes<String>(numberOfThemes: thems.count){index in
+    private lazy var emojiThemes = Themes<String>(numberOfThemes: thems.count){index in
         return thems[index]
     }
     func getRundomTheme() -> Themes<String>.Theme {
