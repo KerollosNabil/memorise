@@ -3,4 +3,86 @@
    uuid = "B4DBCD6C-1705-41A4-A27C-FD7C5FE9AD5B"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E675E30C-543B-4C1E-AB83-B679A8FA0070"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "meomorize/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "startBonusTimeAnimation()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E675E30C-543B-4C1E-AB83-B679A8FA0070 - ee2d9e27e50aa1de"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "meomorize.CardView.(startBonusTimeAnimation in _F365522057D1DA63F6B0AB87A7D7F0CE)() -&gt; ()"
+                  moduleName = "meomorize"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/projects/memorise/meomorize/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "758">
+               </Location>
+               <Location
+                  uuid = "E675E30C-543B-4C1E-AB83-B679A8FA0070 - f3977c9958ae17b2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in meomorize.CardView.(startBonusTimeAnimation in _F365522057D1DA63F6B0AB87A7D7F0CE)() -&gt; ()"
+                  moduleName = "meomorize"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/projects/memorise/meomorize/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "86"
+                  endingLineNumber = "86"
+                  offsetFromSymbolStart = "67">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5B19287E-2497-4D9D-BE53-F203C88834C2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "meomorize/CardGame.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "isFaceUp"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E30F9FE6-E713-457B-B269-26B9B12269F4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "meomorize/CardGame.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "startUsingBonusTime()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -36,14 +36,20 @@ struct ContentView: View{
                 .padding()
             Grid(emojiCardGame.cards){card in
                 CardView(card: card).onTapGesture {
-                    self.emojiCardGame.choos(card: card)
+                    withAnimation(.easeInOut(duration: 1), {
+                        self.emojiCardGame.choos(card: card)
+                    })
+                    
                 }
             }
             .foregroundColor(emojiCardGame.theme.primaryColor)
             HStack{
                 
                 Button(action: {
-                    self.emojiCardGame.newGame()
+                    withAnimation(.easeInOut(duration:1), {
+                        self.emojiCardGame.newGame()
+                    })
+                    
                     
                 }) {
                     Text("New Game").fontWeight(.semibold)
@@ -72,20 +78,38 @@ struct CardView: View{
             self.body(size: geometry.size)
         }
     }
+    @State private var animationBonusRemaining:Double = 0
+    private func startBonusTimeAnimation(){
+        print(card.bonusRemaining)
+        animationBonusRemaining = card.bonusRemaining
+        withAnimation(.linear(duration: card.bonusTimeRemaining), {
+            animationBonusRemaining = 0
+        })
+    }
     @ViewBuilder
     private func body(size:CGSize)-> some View{
         if card.isFaceUp || !card.isMatched{
             ZStack{
-                Pie(startAngle: Angle(degrees: -90), endAnlge: Angle(degrees: -340),clockWise: true)
-                .padding(min(size.width, size.height) * paddingRatioForThePie)
+                Group{
+                    if(card.isConsumingBonusTime){
+                        
+                        Pie(startAngle: Angle(degrees: -90), endAnlge: Angle(degrees: -90 - (animationBonusRemaining*360.0) ),clockWise: true)
+                            .onAppear(){
+                                self.startBonusTimeAnimation()
+                            }
+                    }else{
+                        Pie(startAngle: Angle(degrees: -90), endAnlge: Angle(degrees: -90 - card.bonusRemaining*360.0 ),clockWise: true)
+                    }
+                }.padding(min(size.width, size.height) * paddingRatioForThePie)
                 .opacity(0.4)
                 Text(card.content)
                     .rotationEffect(Angle.degrees(card.isMatched ? 360 : 0))
-                    .animation(Animation.linear(duration: 1).repeatForever(autoreverses: false))
+                    .animation(card.isMatched ? Animation.linear(duration: 1).repeatForever(autoreverses: false): .default)
             }
             .cardify(isFaceUp: card.isFaceUp)
             .font(Font.system(size: min(size.width, size.height) * fontRatio))
             .padding(min(size.width, size.height) * paddingRatio)
+            .transition(.scale)
         }
         
         
@@ -94,7 +118,7 @@ struct CardView: View{
 
     }
     private let cornerRedus:CGFloat = 10.0
-    private let fontRatio:CGFloat = 0.75
+    private let fontRatio:CGFloat = 0.7
     private let paddingRatio:CGFloat = 0.02
     private let paddingRatioForThePie:CGFloat = 0.03
     
